@@ -1,0 +1,57 @@
+.agregar-terreno {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.agregar-terreno h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.agregar-terreno form input,
+.agregar-terreno form textarea,
+.agregar-terreno form select {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.agregar-terreno form input:focus,
+.agregar-terreno form textarea:focus,
+.agregar-terreno form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.agregar-terreno .imagenes-inputs input {
+  margin-bottom: 12px;
+}
+
+.agregar-terreno form button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.agregar-terreno form button:hover {
+  background-color: #0056b3;
+}
+

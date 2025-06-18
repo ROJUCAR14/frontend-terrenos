@@ -1,0 +1,98 @@
+.seccion-misionvision {
+  display: flex;
+  padding: 40px;
+  background-image: url('../../public/img/misionvision.svg');
+  background-size: cover;
+  background-position: center;
+  color: #111;
+  font-family: 'Segoe UI', sans-serif;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.intro {
+  flex: 1;
+  min-width: 250px; 
+  background-color: rgba(231, 231, 231, 0.75);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.intro h2 {
+  font-size: 36px;
+  font-style: italic;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.intro p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.tarjetas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.tarjeta {
+  background-color: rgba(231, 231, 231, 0.75);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  width: 30%;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.imagen {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: end;
+  padding: 15px;
+}
+
+.imagen h3 {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.tarjeta p {
+  padding: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #111;
+}
+
+@media (max-width: 480px) {
+  .seccion-misionvision {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .intro {
+    order: -1; /* Asegura que la intro vaya primero */
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .tarjetas {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tarjeta {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,1 @@
+Se encontro un error en el agregar usuario, en conexiones, debemos modificarlo, antes estaba en el header, ahora lo pasamos directamente al archivo principal.

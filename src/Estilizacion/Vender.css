@@ -1,0 +1,138 @@
+.vender {
+  padding: 60px 40px;
+  background: #e7e7e7;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.vender-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.vender-info {
+  flex: 1;
+  min-width: 320px;
+}
+
+.vender-info h2 {
+  font-size: 32px;
+  color: #0d1b4c;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.vender-info p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.contacto-detalles {
+  margin-top: 20px;
+}
+
+.contacto-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.icono {
+  font-size: 24px;
+  color: #0d1b4c;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.contacto-item h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0d1b4c;
+}
+
+.contacto-item p {
+  margin: 3px 0 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.vender-formulario {
+  background-color: #0d1b4c;
+  border-radius: 20px;
+  padding: 30px;
+  flex: 1;
+  min-width: 320px;
+  color: white;
+}
+
+.vender-formulario h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.vender-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.vender-formulario input,
+.vender-formulario textarea {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.vender-formulario textarea {
+  resize: none;
+}
+
+.vender-formulario button {
+  background: #3ea1b3;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.vender-formulario button:hover {
+  background: #2e8191;
+}
+
+.vender-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: white;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.vender-formulario input,
+.vender-formulario textarea {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}

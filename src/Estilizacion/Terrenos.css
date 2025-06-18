@@ -1,0 +1,119 @@
+.terrenos {
+  background-color: #f7f7f7;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.terrenos h2 {
+  font-size: 30px;
+  color: #333;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #e53935;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.terrenos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.terreno-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.terreno-card:hover {
+  transform: translateY(-5px);
+}
+
+.terreno-imagen {
+  position: relative;
+}
+
+.terreno-imagen img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.terreno-tipo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #0d1b4c;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.terreno-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.precio {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.ubicacion, .area {
+  font-size: 14px;
+  color: #555;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.filtros select,
+.filtros input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  min-width: 180px;
+}
+
+.ver-mas {
+  margin-top: 40px;
+}
+
+.ver-mas button {
+  background-color: #0d1b4c;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ver-mas button:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+.ver-mas button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 400px) {
+  .terreno-card {
+    width: calc(50% - 15px); /* 2 columnas con separación */
+  }
+}

@@ -1,0 +1,42 @@
+.admin-contenedor {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.admin-formulario {
+  flex: 1;
+  min-width: 350px;
+}
+
+.admin-tabla-container {
+  flex: 2;
+  overflow-x: auto;
+}
+
+.admin-agregar-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.editar-eliminar-tabla {
+  flex: 2;
+  overflow-x: auto;
+}
+
+.editar-eliminar-tabla table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.editar-eliminar-tabla th, .editar-eliminar-tabla td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+

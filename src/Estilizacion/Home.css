@@ -1,0 +1,157 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 80px; /* Evita que el header tape el video */
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Overlay oscuro */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 700px;
+  padding: 0 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.hero-content h1 {
+  font-size: 64px;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  font-weight: bold;
+  /* text-shadow eliminado */
+}
+
+.hero-content p {
+  font-size: 24px;
+  color: #e0e0e0;
+  margin-bottom: 40px;
+  /* text-shadow eliminado */
+}
+
+.boton-ofertas {
+  padding: 14px 36px;
+  font-size: 18px;
+  color: white;
+  border: 1px solid white;
+  background: transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton-ofertas:hover {
+  background-color: white;
+  color: #222;
+}
+
+/* Animación suave de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
+
+  .hero-content button {
+    font-size: 16px;
+    padding: 12px 28px;
+  }
+}
+
+
+
+
+
+
+
+.nosotros {
+  padding: 100px 5%;
+  background-color: #e7e7e7;
+}
+
+.nosotros-container {
+  display: flex;
+  flex-direction: row;         /* 👉 lado a lado */
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;             /* 👉 en móvil se apilan */
+}
+
+.nosotros-imagen {
+  flex: 1;
+  min-width: 300px;
+}
+
+.nosotros-imagen img {
+  width: 100%;
+  max-width: 600px; /* 👉 Aumentado de 500px a 600px */
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+}
+
+.nosotros-texto {
+  flex: 1;
+  min-width: 300px;
+}
+
+.nosotros-texto h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.nosotros-texto p {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #444;
+}

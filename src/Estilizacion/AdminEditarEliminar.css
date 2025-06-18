@@ -1,0 +1,186 @@
+.tabla-admin {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 600px; /* Ajusta a tu preferencia, este es un buen inicio */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tabla-admin h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Espaciado general entre celdas */
+.tabla-admin table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* espacio vertical entre filas */
+  font-size: 14px;
+}
+
+/* Celdas: padding interno horizontal y vertical */
+.tabla-admin table td,
+.tabla-admin table th {
+  padding: 12px 16px; /* top-bottom / left-right */
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 8px;
+}
+
+/* Encabezado */
+.tabla-admin table thead th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+/* Fila en modo edición (resalta visualmente) */
+.tabla-admin table tr input,
+.tabla-admin table tr select {
+  padding: 6px 8px;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Botones */
+.tabla-admin .btn {
+  margin: 0 3px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tabla-admin .btn.editar { background-color: #ffeb3b; }
+.tabla-admin .btn.eliminar { background-color: #f44336; color: white; }
+.tabla-admin .btn.guardar { background-color: #4caf50; color: white; }
+.tabla-admin .btn.cancelar { background-color: #9e9e9e; color: white; }
+
+
+.paginacion {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.paginacion button {
+  margin: 0 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.paginacion button.activo {
+  background-color: #3f51b5;
+  color: white;
+  font-weight: bold;
+}
+
+.paginacion button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Limitar tamaño del contenido de celdas largas */
+.tabla-admin table td {
+  max-width: 150px; /* Puedes ajustar este valor */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* También se puede aplicar a inputs en modo edición si deseas limitar visualmente */
+.tabla-admin table tr input,
+.tabla-admin table tr select {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background: transparent; /* Ya no blanco aquí */
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  max-height: 98vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-form-container {
+  background: #ffffff; /* Fondo blanco solo aquí */
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-form-container h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+.modal-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-form-container label {
+  margin-top: 12px;
+  font-weight: 600;
+  color: #444;
+}
+
+.modal-form-container input,
+.modal-form-container select,
+.modal-form-container textarea {
+  padding: 10px;
+  margin-top: 4px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  resize: none;
+}
+
+.modal-form-container textarea {
+  min-height: 100px;
+  resize: vertical; /* permitir agrandar si se desea */
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-buttons .btn {
+  flex: 1;
+}
