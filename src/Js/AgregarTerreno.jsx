@@ -48,7 +48,7 @@ const API_URL = 'https://backend-terrenos.onrender.com';
         alert('Propiedad actualizada correctamente');
       } else {
         // nueva
-        await axios.post(`${API_URL}/terrenos/${form.id}`, data, {
+        await axios.post(`${API_URL}/terrenos`, data, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         alert('Propiedad agregada correctamente');
