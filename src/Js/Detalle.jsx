@@ -7,6 +7,8 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../Estilizacion/Detalle.css';
 
+const API_URL = 'https://backend-terrenos.onrender.com'; // 🔗 tu backend
+
 const Detalle = () => {
   const { id } = useParams();
   const [terreno, setTerreno] = useState(null);
@@ -15,7 +17,7 @@ const Detalle = () => {
   useEffect(() => {
     const obtenerTerreno = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/terrenos/${id}`);
+        const res = await axios.get(`${API_URL}/terrenos/${id}`);
         setTerreno(res.data);
       } catch (error) {
         console.error('Error al obtener terreno:', error);
@@ -65,7 +67,7 @@ try {
           <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
             {imagenes.map((img, i) => (
               <div key={i} onClick={() => setIndiceAmpliado(i)} style={{ cursor: 'zoom-in' }}>
-                <img src={`http://localhost:3001${img}`} alt={`${terreno.titulo} ${i + 1}`} />
+                <img src={`${API_URL}${img}`} alt={`${terreno.titulo} ${i + 1}`} />
 
               </div>
             ))}
@@ -107,7 +109,7 @@ try {
       {indiceAmpliado !== null && (
   <div className="modal-imagen" onClick={() => setIndiceAmpliado(null)}>
     <img
-      src={`http://localhost:3001${imagenes[indiceAmpliado]}`}
+      src={`${API_URL}${imagenes[indiceAmpliado]}`}
       alt="Imagen ampliada"
       onClick={(e) => e.stopPropagation()}
     />

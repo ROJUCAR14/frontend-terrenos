@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../Estilizacion/AdminEditarEliminar.css';
 import { FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 
+const API_URL = 'https://backend-terrenos.onrender.com'; // 🔗 tu backend desplegado
+
 const AdminEditarEliminar = () => {
   const [propiedades, setPropiedades] = useState([]);
   const [editando, setEditando] = useState(null);
@@ -26,7 +28,7 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
 
   const obtenerPropiedades = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/terrenos');
+      const res = await axios.get(`${API_URL}/terrenos`);
       setPropiedades(res.data);
     } catch (err) {
       console.error(err);
@@ -35,7 +37,7 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
 
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar esta propiedad?')) {
-      await axios.delete(`http://localhost:3001/terrenos/${id}`);
+      await axios.delete(`${API_URL}/terrenos/${id}`);
       obtenerPropiedades();
     }
   };
@@ -51,7 +53,7 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:3001/terrenos/${editando}`, form);
+    await axios.put(`${API_URL}/terrenos/${editando}`, form);
     setEditando(null);
     obtenerPropiedades();
   };

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../Estilizacion/Terrenos.css';
 
+const API_URL = 'https://backend-terrenos.onrender.com'; // ✅ tu backend en Render
 const normalize = str => (str || '').normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
 const Terrenos = () => {
@@ -18,7 +19,7 @@ const Terrenos = () => {
   useEffect(() => {
     const fetchTerrenos = async () => {
       try {
-        const res = await axios.get('http://localhost:3001/terrenos');
+        const res = await axios.get('${API_URL}/terrenos');
         setTerrenos(res.data);
       } catch (err) {
         console.error('Error cargando terrenos:', err);
@@ -85,7 +86,7 @@ const Terrenos = () => {
           terrenosAMostrar.map(t => (
             <Link to={`/terreno/${t.id}`} key={t.id} className="terreno-card">
               <div className="terreno-imagen">
-                <img src={`http://localhost:3001${t.imagenes[0]}`} alt={t.titulo} />
+                <img src={`${API_URL}${t.imagenes[0]}`} alt={t.titulo} />
 
                 <span className="terreno-tipo">{t.tipo}</span>
               </div>
