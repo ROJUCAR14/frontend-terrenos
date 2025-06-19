@@ -33,24 +33,20 @@ const Terrenos = () => {
     setFiltros(prev => ({ ...prev, [name]: value }));
   };
 
-const resultadosFiltrados = (
-  Array.isArray(terrenos) ? terrenos : []
-)
-  .filter(t => t.estado !== 'Vendido')
-  .filter(t => {
-    const titulo = normalize(t.titulo);
-    const ubicacion = normalize(t.ubicacion || '');
-    const distritoTexto = normalize((ubicacion.split(',')[1] || '').trim());
-    const busqueda = normalize(filtros.busqueda);
+  const resultadosFiltrados = terrenos
+    .filter(t => t.estado === 'Disponible')
+    .filter(t => {
+      const titulo = normalize(t.titulo);
+      const distrito = normalize(t.distrito);
+      const busqueda = normalize(filtros.busqueda);
 
-    return (
-      (filtros.tipo === 'Todos' || t.tipo === filtros.tipo) &&
-      (filtros.operacion === 'Todos' || t.operacion === filtros.operacion) &&
-      (filtros.distrito === 'Todos' || distritoTexto === normalize(filtros.distrito)) &&
-      (titulo.includes(busqueda) || ubicacion.includes(busqueda))
-    );
-  });
-
+      return (
+        (filtros.tipo === 'Todos' || t.tipo === filtros.tipo) &&
+        (filtros.operacion === 'Todos' || t.operacion === filtros.operacion) &&
+        (filtros.distrito === 'Todos' || distrito === normalize(filtros.distrito)) &&
+        (titulo.includes(busqueda) || distrito.includes(busqueda))
+      );
+    });
 
   const terrenosAMostrar = verMas ? resultadosFiltrados : resultadosFiltrados.slice(0, 10);
 
