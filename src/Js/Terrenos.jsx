@@ -33,21 +33,6 @@ const Terrenos = () => {
     setFiltros(prev => ({ ...prev, [name]: value }));
   };
 
-  const resultadosFiltrados = terrenos
-    .filter(t => t.estado === 'Disponible')
-    .filter(t => {
-      const titulo = normalize(t.titulo);
-      const distrito = normalize(t.distrito);
-      const busqueda = normalize(filtros.busqueda);
-
-      return (
-        (filtros.tipo === 'Todos' || t.tipo === filtros.tipo) &&
-        (filtros.operacion === 'Todos' || t.operacion === filtros.operacion) &&
-        (filtros.distrito === 'Todos' || distrito === normalize(filtros.distrito)) &&
-        (titulo.includes(busqueda) || distrito.includes(busqueda))
-      );
-    });
-
   const terrenosAMostrar = verMas ? resultadosFiltrados : resultadosFiltrados.slice(0, 10);
 
   return (
