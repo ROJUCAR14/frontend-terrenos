@@ -18,7 +18,7 @@ const FormularioPropiedad = ({ propiedadEditada, limpiarPropiedadEditada }) => {
   });
 
   const [imagenes, setImagenes] = useState([]);
-
+const API_URL = 'https://backend-terrenos.onrender.com';
   useEffect(() => {
     if (propiedadEditada) {
       setForm(propiedadEditada);
@@ -42,13 +42,13 @@ const FormularioPropiedad = ({ propiedadEditada, limpiarPropiedadEditada }) => {
     try {
       if (form.id) {
         // actualizar
-        await axios.put(`http://localhost:3001/terrenos/${form.id}`, data, {
+        await axios.put(`${API_URL}/terrenos/${form.id}`, data, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         alert('Propiedad actualizada correctamente');
       } else {
         // nueva
-        await axios.post('http://localhost:3001/terrenos', data, {
+        await axios.post(`${API_URL}/terrenos/${form.id}`, data, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         alert('Propiedad agregada correctamente');
