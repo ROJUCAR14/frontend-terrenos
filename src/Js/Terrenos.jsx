@@ -19,7 +19,7 @@ const Terrenos = () => {
   useEffect(() => {
     const fetchTerrenos = async () => {
       try {
-        const res = await axios.get('${API_URL}/terrenos');
+        const res = await axios.get(`${API_URL}/terrenos`);
         console.log("Respuesta del backend:", res.data); // 👈 Míralo en consola del navegador
         setTerrenos(res.data);
       } catch (err) {
