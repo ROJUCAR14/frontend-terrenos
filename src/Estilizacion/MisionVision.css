@@ -1,98 +1,108 @@
-.seccion-misionvision {
+.mvision-section {
   display: flex;
-  padding: 40px;
-  background-image: url('../../public/img/misionvision.svg');
-  background-size: cover;
-  background-position: center;
-  color: #111;
-  font-family: 'Segoe UI', sans-serif;
-  gap: 30px;
   flex-wrap: wrap;
-}
-.intro {
-  flex: 1;
-  min-width: 250px; 
-  background-color: rgba(231, 231, 231, 0.75);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  padding: 30px;
-  border-radius: 10px;
+  background-color: #282722;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 60px 5vw; /* Menor padding lateral */
+  gap: 40px; /* espacio entre izquierda y derecha */
 }
 
-.intro h2 {
-  font-size: 36px;
+.mvision-left {
+  flex: 1 1 400px;
+  padding: 20px;
+  max-width: none; /* Quitar límite artificial */
+}
+
+.mvision-icon {
+  width: 24px;
+  height: 24px;
+  background: white;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  margin-bottom: 20px;
+}
+
+.mvision-left h2 {
+  font-size: 32px;
   font-style: italic;
   margin-bottom: 20px;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
-.intro p {
+.mvision-left p {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #dcdcdc;
 }
 
-.tarjetas {
+.mvision-right {
+  flex: 1 1 600px;
   display: flex;
-  gap: 10px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra las cards horizontalmente */
+  gap: 20px;
 }
 
-.tarjeta {
-  background-color: rgba(231, 231, 231, 0.75);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  border-radius: 12px;
+.mvision-card {
+  background-color: #ecece8;
+  border-radius: 16px;
   overflow: hidden;
-  width: 30%;
+  flex: 1 1 280px; /* Para que se ajusten mejor según espacio */
+  max-width: 400px;
   min-width: 250px;
-  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.imagen {
+.mvision-card-img {
   height: 180px;
   background-size: cover;
   background-position: center;
-  position: relative;
-  display: flex;
-  align-items: end;
-  padding: 15px;
 }
 
-.imagen h3 {
-  color: white;
-  font-weight: bold;
+.mvision-card h3 {
+  font-style: italic;
+  color: #282722;
   font-size: 18px;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  padding: 16px 20px 8px;
 }
 
-.tarjeta p {
-  padding: 15px;
+.mvision-card p {
   font-size: 14px;
-  line-height: 1.5;
-  color: #111;
+  color: #282722;
+  padding: 0 20px 20px;
+  line-height: 1.6;
 }
 
-@media (max-width: 480px) {
-  .seccion-misionvision {
+@media (max-width: 768px) {
+  .mvision-section {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+
+  .mvision-left {
+    max-width: 100%;
+    flex: 1 1 100%;
+    padding: 0;
+  }
+
+  .mvision-right {
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    gap: 20px;
   }
 
-  .intro {
-    order: -1; /* Asegura que la intro vaya primero */
+  .mvision-card {
     width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
+    max-width: 350px;
+    min-height: 420px; /* ⬅️ Ajusta según tu contenido */
   }
 
-  .tarjetas {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  .mvision-left h2 {
+    font-size: 24px;
   }
 
-  .tarjeta {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 15px;
+  .mvision-left p {
+    font-size: 14px;
   }
 }
