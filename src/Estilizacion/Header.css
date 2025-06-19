@@ -39,3 +39,66 @@
   color: #f4b400; /* Color al pasar el mouse */
 }
 
+/* Hamburguesa (solo visible en móvil) */
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburguesa span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animación al abrir */
+.hamburguesa.activo span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburguesa.activo span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburguesa.activo span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+  backdrop-filter: blur(8px);
+  padding: 10px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 0;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .nav-links.activo {
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .hamburguesa {
+    display: flex;
+  }
+}

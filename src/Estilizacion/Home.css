@@ -155,3 +155,48 @@
   line-height: 1.8;
   color: #444;
 }
+
+
+/* Responsive específico para móviles pequeños (~360px de ancho) */
+@media (max-width: 400px) {
+  .hero-content {
+    padding: 0 8%;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .boton-ofertas {
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 25px;
+  }
+
+  .nosotros {
+    padding: 60px 5%;
+  }
+
+  .nosotros-texto h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .nosotros-texto p {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .nosotros-imagen img {
+    max-width: 100%;
+    border-radius: 15px;
+  }
+}
