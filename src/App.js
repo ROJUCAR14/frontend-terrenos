@@ -7,17 +7,19 @@ import Detalle from "./Js/Detalle";
 import Formulario from "./Js/Formulario.jsx";
 import Vendidos from "./Js/Vendidos.jsx";
 import AdminAgregar from "./Js/AdminAgregar.jsx";
+import Login from './Js/Login';
+import RutaProtegida from './Js/RutaProtegida'; // nuevo archivo
 
 import "./Estilizacion/App.css";
 
 // Nuevo componente para manejar rutas + header condicional
 const AppContent = () => {
   const location = useLocation();
-  const esRutaAdmin = location.pathname.startsWith("/Admin");
+  const ocultarHeader = location.pathname.startsWith("/Admin") || location.pathname === "/login";
 
   return (
     <>
-      {!esRutaAdmin && <Header />}
+      {!ocultarHeader && <Header />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -25,7 +27,12 @@ const AppContent = () => {
         <Route path="/terreno/:id" element={<Detalle />} />
         <Route path="/formulario" element={<Formulario />} />
         <Route path="/vendidos" element={<Vendidos />} />
-        <Route path="/Admin" element={<AdminAgregar />} />
+        <Route path="/login" element={<Login />} />
+<Route path="/Admin" element={
+  <RutaProtegida>
+    <AdminAgregar />
+  </RutaProtegida>
+} />
       </Routes>
     </>
   );
