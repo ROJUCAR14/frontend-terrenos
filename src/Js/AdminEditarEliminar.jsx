@@ -3,29 +3,34 @@ import axios from 'axios';
 import '../Estilizacion/AdminEditarEliminar.css';
 import { FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 
-const API_URL = 'https://backend-terrenos.onrender.com'; // 🔗 tu backend desplegado
+// 🔗 Backend desplegado en Render
+const API_URL = 'https://backend-terrenos.onrender.com';
 
 const AdminEditarEliminar = () => {
   const [propiedades, setPropiedades] = useState([]);
   const [editando, setEditando] = useState(null);
   const [form, setForm] = useState({});
-  // NUEVO estado para paginación
-const [paginaActual, setPaginaActual] = useState(1);
-const propiedadesPorPagina = 5;
 
-const indiceUltima = paginaActual * propiedadesPorPagina;
-const indicePrimera = indiceUltima - propiedadesPorPagina;
-const propiedadesPagina = propiedades.slice(indicePrimera, indiceUltima);
+  // Estado para control de paginación
+  const [paginaActual, setPaginaActual] = useState(1);
+  const propiedadesPorPagina = 5;
 
-const totalPaginas = Math.ceil(propiedades.length / propiedadesPorPagina);
+  // Calcular índices para paginar la lista
+  const indiceUltima = paginaActual * propiedadesPorPagina;
+  const indicePrimera = indiceUltima - propiedadesPorPagina;
+  const propiedadesPagina = propiedades.slice(indicePrimera, indiceUltima);
 
-// Cambiar de página
-const cambiarPagina = (numero) => setPaginaActual(numero);
+  const totalPaginas = Math.ceil(propiedades.length / propiedadesPorPagina);
 
+  // Cambiar la página activa
+  const cambiarPagina = (numero) => setPaginaActual(numero);
+
+  // Obtener propiedades al cargar el componente
   useEffect(() => {
     obtenerPropiedades();
   }, []);
 
+  // Solicita las propiedades desde la API
   const obtenerPropiedades = async () => {
     try {
       const res = await axios.get(`${API_URL}/terrenos`);
@@ -35,6 +40,7 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
     }
   };
 
+  // Eliminar una propiedad
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar esta propiedad?')) {
       await axios.delete(`${API_URL}/terrenos/${id}`);
@@ -42,15 +48,18 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
     }
   };
 
+  // Activar modo edición
   const handleEdit = (propiedad) => {
     setEditando(propiedad.id);
     setForm(propiedad);
   };
 
+  // Manejo de cambio en los campos del formulario
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Actualizar propiedad en backend
   const handleUpdate = async (e) => {
     e.preventDefault();
     await axios.put(`${API_URL}/terrenos/${editando}`, form);
@@ -61,6 +70,8 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
   return (
     <div className="tabla-admin">
       <h2>Lista de Propiedades</h2>
+
+      {/* Tabla de propiedades */}
       <table>
         <thead>
           <tr>
@@ -79,10 +90,12 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
             <th>Acciones</th>
           </tr>
         </thead>
+
         <tbody>
           {propiedadesPagina.map((p, index) => (
             <tr key={p.id}>
               <td>{indicePrimera + index + 1}</td>
+
               {editando === p.id ? (
                 <>
                   <td><input name="titulo" value={form.titulo} onChange={handleChange} /></td>
@@ -145,91 +158,84 @@ const cambiarPagina = (numero) => setPaginaActual(numero);
             </tr>
           ))}
 
+          {/* Modal de edición (por si lo estás usando visualmente) */}
           {editando !== null && (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <div className="modal-form-container">
-        <h3>Editar Propiedad</h3>
-        <form onSubmit={handleUpdate}>
-          <label>Título:</label>
-          <input name="titulo" value={form.titulo} onChange={handleChange} />
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <div className="modal-form-container">
+                  <h3>Editar Propiedad</h3>
+                  <form onSubmit={handleUpdate}>
+                    {/* Campos del formulario en modal */}
+                    <label>Título:</label>
+                    <input name="titulo" value={form.titulo} onChange={handleChange} />
+                    <label>Estado:</label>
+                    <select name="estado" value={form.estado} onChange={handleChange}>
+                      <option value="Disponible">Disponible</option>
+                      <option value="Vendido">Vendido</option>
+                    </select>
+                    <label>Tipo:</label>
+                    <select name="tipo" value={form.tipo} onChange={handleChange}>
+                      <option value="Terreno">Terreno</option>
+                      <option value="Casa">Casa</option>
+                      <option value="Local Comercial">Local Comercial</option>
+                      <option value="Departamento">Departamento</option>
+                      <option value="Edificio">Edificio</option>
+                      <option value="Oficina">Oficina</option>
+                      <option value="Finca">Finca</option>
+                      <option value="Duplex/Triplex">Duplex/Triplex</option>
+                    </select>
+                    <label>Operación:</label>
+                    <select name="operacion" value={form.operacion} onChange={handleChange}>
+                      <option value="Venta">Venta</option>
+                      <option value="Alquiler">Alquiler</option>
+                      <option value="Venta/Alquiler">Venta/Alquiler</option>
+                    </select>
+                    <label>Precio (S/):</label>
+                    <input name="precioSoles" value={form.precioSoles} onChange={handleChange} />
+                    <label>Precio (USD):</label>
+                    <input name="precioUSD" value={form.precioUSD} onChange={handleChange} />
+                    <label>Departamento:</label>
+                    <input name="departamento" value={form.departamento} onChange={handleChange} />
+                    <label>Distrito:</label>
+                    <input name="distrito" value={form.distrito} onChange={handleChange} />
+                    <label>Dirección:</label>
+                    <input name="direccion" value={form.direccion} onChange={handleChange} />
+                    <label>Área:</label>
+                    <input name="area" value={form.area} onChange={handleChange} />
+                    <label>Descripción:</label>
+                    <textarea name="descripcion" value={form.descripcion} onChange={handleChange} />
 
-          <label>Estado:</label>
-          <select name="estado" value={form.estado} onChange={handleChange}>
-            <option value="Disponible">Disponible</option>
-            <option value="Vendido">Vendido</option>
-          </select>
-
-          <label>Tipo:</label>
-          <select name="tipo" value={form.tipo} onChange={handleChange}>
-            <option value="Terreno">Terreno</option>
-            <option value="Casa">Casa</option>
-            <option value="Local Comercial">Local Comercial</option>
-            <option value="Departamento">Departamento</option>
-            <option value="Edificio">Edificio</option>
-            <option value="Oficina">Oficina</option>
-            <option value="Finca">Finca</option>
-            <option value="Duplex/Triplex">Duplex/Triplex</option>
-          </select>
-
-          <label>Operación:</label>
-          <select name="operacion" value={form.operacion} onChange={handleChange}>
-            <option value="Venta">Venta</option>
-            <option value="Alquiler">Alquiler</option>
-            <option value="Venta/Alquiler">Venta/Alquiler</option>
-          </select>
-
-          <label>Precio (S/):</label>
-          <input name="precioSoles" value={form.precioSoles} onChange={handleChange} />
-
-          <label>Precio (USD):</label>
-          <input name="precioUSD" value={form.precioUSD} onChange={handleChange} />
-
-          <label>Departamento:</label>
-          <input name="departamento" value={form.departamento} onChange={handleChange} />
-
-          <label>Distrito:</label>
-          <input name="distrito" value={form.distrito} onChange={handleChange} />
-
-          <label>Dirección:</label>
-          <input name="direccion" value={form.direccion} onChange={handleChange} />
-
-          <label>Área:</label>
-          <input name="area" value={form.area} onChange={handleChange} />
-
-          <label>Descripción:</label>
-          <textarea name="descripcion" value={form.descripcion} onChange={handleChange} />
-
-          <div className="modal-buttons">
-            <button type="submit" className="btn guardar"><FaSave /> Guardar</button>
-            <button type="button" className="btn cancelar" onClick={() => setEditando(null)}><FaTimes /> Cancelar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-)}
-
+                    {/* Botones del modal */}
+                    <div className="modal-buttons">
+                      <button type="submit" className="btn guardar"><FaSave /> Guardar</button>
+                      <button type="button" className="btn cancelar" onClick={() => setEditando(null)}><FaTimes /> Cancelar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )}
         </tbody>
       </table>
+
+      {/* Paginación */}
       <div className="paginacion">
-  <button onClick={() => cambiarPagina(1)} disabled={paginaActual === 1}>Primero</button>
-  <button onClick={() => cambiarPagina(paginaActual - 1)} disabled={paginaActual === 1}>Anterior</button>
+        <button onClick={() => cambiarPagina(1)} disabled={paginaActual === 1}>Primero</button>
+        <button onClick={() => cambiarPagina(paginaActual - 1)} disabled={paginaActual === 1}>Anterior</button>
 
-  {[...Array(totalPaginas)].map((_, i) => (
-    <button
-      key={i + 1}
-      onClick={() => cambiarPagina(i + 1)}
-      className={paginaActual === i + 1 ? 'activo' : ''}
-    >
-      {i + 1}
-    </button>
-  ))}
+        {[...Array(totalPaginas)].map((_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => cambiarPagina(i + 1)}
+            className={paginaActual === i + 1 ? 'activo' : ''}
+          >
+            {i + 1}
+          </button>
+        ))}
 
-  <button onClick={() => cambiarPagina(paginaActual + 1)} disabled={paginaActual === totalPaginas}>Siguiente</button>
-  <button onClick={() => cambiarPagina(totalPaginas)} disabled={paginaActual === totalPaginas}>Último</button>
-</div>
-
+        <button onClick={() => cambiarPagina(paginaActual + 1)} disabled={paginaActual === totalPaginas}>Siguiente</button>
+        <button onClick={() => cambiarPagina(totalPaginas)} disabled={paginaActual === totalPaginas}>Último</button>
+      </div>
     </div>
   );
 };

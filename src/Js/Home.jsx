@@ -1,7 +1,11 @@
 import React from 'react';
 import '../Estilizacion/Home.css';
+
+// Recursos multimedia y componentes se importan aquí
 import Portada from '../assets/videootro.mp4';
-import ImagenNosotros from '../assets/nosotros.svg'; // ✅ importación correcta
+import ImagenNosotros from '../assets/nosotros.svg';
+
+// Componentes internos de la página principal
 import Terrenos from './Terrenos';
 import Vendidos from './Vendidos';
 import Servicios from './Servicios';
@@ -12,6 +16,7 @@ import MisionVision from './MisionVision';
 const Home = () => {
   return (
     <>
+      {/* Sección de portada con video de fondo */}
       <div id="inicio" className="hero">
         <video autoPlay loop muted playsInline className="background-video">
           <source src={Portada} type="video/mp4" />
@@ -42,32 +47,32 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sección MisionVision */}
+      {/* Sección Misión y Visión */}
       <section className="MisionVision">
         <MisionVision/>
       </section>
 
-      {/* Sección Vendidos */}
+      {/* Sección de inmuebles vendidas */}
       <section id="propiedades" className="Vendidos">
         <Vendidos/>
       </section>
 
-      {/* Sección Terrenos */}
+      {/* Sección de inmuebles disponibles */}
       <section id="terrenos" className="Terrrenos">
         <Terrenos/>
       </section>
 
-      {/* Sección Servicios */}
+      {/* Sección de servicios ofrecidos */}
       <section id="servicios" className="Servicios">
         <Servicios/>
       </section>
 
-      {/* Sección Vender */}
+      {/* Sección de formulario para vender propiedad */}
       <section id="contacto" className="Vender">
         <Vender/>
       </section>
 
-      {/* Sección Contacto */}
+      {/* Sección de información de contacto y redes sociales */}
       <section className="Contacto">
         <Contacto/>
       </section>

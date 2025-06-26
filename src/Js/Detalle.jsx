@@ -7,13 +7,20 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../Estilizacion/Detalle.css';
 
-const API_URL = 'https://backend-terrenos.onrender.com'; // 🔗 tu backend
+// URL base del backend
+const API_URL = 'https://backend-terrenos.onrender.com';
 
 const Detalle = () => {
+  // Obtiene el ID de la URL
   const { id } = useParams();
+
+  // Estado para el terreno cargado
   const [terreno, setTerreno] = useState(null);
+
+  // Estado para saber si una imagen está ampliada y cuál
   const [indiceAmpliado, setIndiceAmpliado] = useState(null);
 
+  // Carga los datos del terreno según el ID
   useEffect(() => {
     const obtenerTerreno = async () => {
       try {
@@ -26,13 +33,18 @@ const Detalle = () => {
     obtenerTerreno();
   }, [id]);
 
+  // Manejador de teclas para navegación en modo ampliado
   useEffect(() => {
     const manejarTeclas = (e) => {
       if (indiceAmpliado !== null) {
         if (e.key === 'ArrowLeft' && indiceAmpliado > 0) {
           setIndiceAmpliado(indiceAmpliado - 1);
         }
-        if (e.key === 'ArrowRight' && terreno?.imagenes && indiceAmpliado < terreno.imagenes.length - 1) {
+        if (
+          e.key === 'ArrowRight' &&
+          terreno?.imagenes &&
+          indiceAmpliado < terreno.imagenes.length - 1
+        ) {
           setIndiceAmpliado(indiceAmpliado + 1);
         }
         if (e.key === 'Escape') {
@@ -40,40 +52,47 @@ const Detalle = () => {
         }
       }
     };
+
     window.addEventListener('keydown', manejarTeclas);
     return () => window.removeEventListener('keydown', manejarTeclas);
   }, [indiceAmpliado, terreno]);
 
+  // Muestra mensaje mientras se cargan los datos
   if (!terreno) return <p style={{ textAlign: 'center' }}>Cargando terreno...</p>;
 
+  // Procesamiento de las imágenes (pueden venir como array o string JSON)
   let imagenes = [];
-
-try {
-  if (Array.isArray(terreno.imagenes)) {
-    imagenes = terreno.imagenes;
-  } else if (typeof terreno.imagenes === 'string') {
-    imagenes = JSON.parse(terreno.imagenes);
+  try {
+    if (Array.isArray(terreno.imagenes)) {
+      imagenes = terreno.imagenes;
+    } else if (typeof terreno.imagenes === 'string') {
+      imagenes = JSON.parse(terreno.imagenes);
+    }
+  } catch (e) {
+    console.error('Error al procesar imágenes:', e);
   }
-} catch (e) {
-  console.error('Error al procesar imágenes:', e);
-}
-
 
   return (
     <>
       <Header />
+
       <div className="detalle-terreno">
+        {/* Carrusel de imágenes */}
         <div className="detalle-img">
           <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
             {imagenes.map((img, i) => (
-              <div key={i} onClick={() => setIndiceAmpliado(i)} style={{ cursor: 'zoom-in' }}>
+              <div
+                key={i}
+                onClick={() => setIndiceAmpliado(i)}
+                style={{ cursor: 'zoom-in' }}
+              >
                 <img src={`${API_URL}${img}`} alt={`${terreno.titulo} ${i + 1}`} />
-
               </div>
             ))}
           </Carousel>
         </div>
 
+        {/* Información del terreno */}
         <div className="detalle-info">
           <h2>{terreno.titulo}</h2>
           <p><strong>Estado:</strong> {terreno.estado}</p>
@@ -88,6 +107,7 @@ try {
           <p><strong>Descripción:</strong> {terreno.descripcion}</p>
         </div>
 
+        {/* Mapa si hay dirección disponible */}
         {terreno.direccion && (
           <div className="mapa">
             <iframe
@@ -103,32 +123,43 @@ try {
           </div>
         )}
 
+        {/* Formulario de contacto */}
         <Formulario />
       </div>
 
+      {/* Modal para ampliar imagen con navegación */}
       {indiceAmpliado !== null && (
-  <div className="modal-imagen" onClick={() => setIndiceAmpliado(null)}>
-    <img
-      src={`${API_URL}${imagenes[indiceAmpliado]}`}
-      alt="Imagen ampliada"
-      onClick={(e) => e.stopPropagation()}
-    />
-    <span className="cerrar" onClick={() => setIndiceAmpliado(null)}>×</span>
-    {indiceAmpliado > 0 && (
-      <button className="navegar izquierda" onClick={(e) => {
-        e.stopPropagation();
-        setIndiceAmpliado(indiceAmpliado - 1);
-      }}>‹</button>
-    )}
-    {indiceAmpliado < imagenes.length - 1 && (
-      <button className="navegar derecha" onClick={(e) => {
-        e.stopPropagation();
-        setIndiceAmpliado(indiceAmpliado + 1);
-      }}>›</button>
-    )}
-  </div>
-)}
+        <div className="modal-imagen" onClick={() => setIndiceAmpliado(null)}>
+          <img
+            src={`${API_URL}${imagenes[indiceAmpliado]}`}
+            alt="Imagen ampliada"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <span className="cerrar" onClick={() => setIndiceAmpliado(null)}>×</span>
 
+          {/* Flecha izquierda */}
+          {indiceAmpliado > 0 && (
+            <button
+              className="navegar izquierda"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIndiceAmpliado(indiceAmpliado - 1);
+              }}
+            >‹</button>
+          )}
+
+          {/* Flecha derecha */}
+          {indiceAmpliado < imagenes.length - 1 && (
+            <button
+              className="navegar derecha"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIndiceAmpliado(indiceAmpliado + 1);
+              }}
+            >›</button>
+          )}
+        </div>
+      )}
     </>
   );
 };
