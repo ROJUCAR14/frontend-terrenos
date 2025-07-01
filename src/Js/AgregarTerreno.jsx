@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Sidebarr from './Sidebar';
 import '../Estilizacion/AgregarTerreno.css';
 
 const FormularioPropiedad = ({ propiedadEditada, limpiarPropiedadEditada }) => {
@@ -82,6 +83,7 @@ const FormularioPropiedad = ({ propiedadEditada, limpiarPropiedadEditada }) => {
   return (
     <div className="agregar-terreno">
       <h2>{form.id ? 'Editar Propiedad' : 'Agregar Nueva Propiedad'}</h2>
+      <Sidebarr /> {/* Sidebar */}
 
       <form onSubmit={handleSubmit}>
         <input

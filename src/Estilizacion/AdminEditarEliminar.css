@@ -56,7 +56,7 @@
   font-size: 14px;
 }
 
-.tabla-admin .btn.editar { background-color: #ffeb3b; }
+.tabla-admin .btn.editar { background-color: #4caf50; }
 .tabla-admin .btn.eliminar { background-color: #f44336; color: white; }
 .tabla-admin .btn.guardar { background-color: #4caf50; color: white; }
 .tabla-admin .btn.cancelar { background-color: #9e9e9e; color: white; }
@@ -152,7 +152,6 @@
 }
 
 .modal-form-container label {
-  margin-top: 12px;
   font-weight: 600;
   color: #444;
 }
@@ -183,4 +182,23 @@
 
 .modal-buttons .btn {
   flex: 1;
+}
+
+
+/* También encabezado oscuro si lo deseas */
+.tabla-admin table thead th {
+  background-color: #282722;
+  color: white;
+}
+
+
+.tabla-admin {
+  margin-left: 85px; /* ancho mínimo del sidebar */
+  transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .sidebar:hover ~ .tabla-admin {
+    margin-left: 260px; /* margen al expandirse el sidebar */
+  }
 }

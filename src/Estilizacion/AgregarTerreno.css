@@ -1,57 +1,131 @@
 .agregar-terreno {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f3f6;
+  min-height: 100vh;
+  padding: 60px 80px; /* más espacio lateral y vertical */
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
 }
 
 .agregar-terreno h2 {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  color: #333;
+  font-size: 36px;
+  font-weight: 700;
+  color: #262420;
+  margin-bottom: 40px; /* más espacio debajo del título */
 }
 
-.agregar-terreno form input,
-.agregar-terreno form textarea,
-.agregar-terreno form select {
-  width: 100%;
-  margin-bottom: 18px;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+.agregar-terreno form {
+  max-width: 1400px; /* más ancho permitido */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px 40px; /* más espacio vertical y horizontal */
 }
 
-.agregar-terreno form input:focus,
-.agregar-terreno form textarea:focus,
-.agregar-terreno form select:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.agregar-terreno .imagenes-inputs input {
-  margin-bottom: 12px;
-}
-
-.agregar-terreno form button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px;
-  width: 100%;
+.agregar-terreno input,
+.agregar-terreno select,
+.agregar-terreno textarea {
+  padding: 18px 24px;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  background-color: #d9d8d4;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.agregar-terreno textarea {
+  grid-column: span 2;
+  resize: none;
+  min-height: 140px; /* más alto */
+}
+
+.agregar-terreno label {
+  grid-column: span 2;
+  font-size: 16px;
+  color: #444;
+}
+
+.agregar-terreno input[type="file"] {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 14px;
+}
+.agregar-terreno button {
+  grid-column: span 2;
+  background-color: #9f9c8f;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 14px 40px; /* botón más grande */
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
-.agregar-terreno form button:hover {
-  background-color: #0056b3;
+.agregar-terreno button:hover {
+  background-color: #7c7a6c;
 }
 
+.agregar-terreno input[type="file"]::file-selector-button {
+  background-color: #2e2c27;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.agregar-terreno input[type="file"]::file-selector-button:hover {
+  background-color: #1f1e1a;
+}
+
+@media (max-width: 480px) {
+  .agregar-terreno {
+    padding: 30px 20px;
+  }
+
+  .agregar-terreno h2 {
+    font-size: 26px;
+    margin-bottom: 25px;
+  }
+
+  .agregar-terreno form {
+    grid-template-columns: 1fr; /* Todos los elementos en una sola columna */
+    gap: 20px;
+  }
+
+  .agregar-terreno .campo-direccion,
+  .agregar-terreno .grupo-imagen,
+  .agregar-terreno label,
+  .agregar-terreno textarea,
+  .agregar-terreno button {
+    grid-column: span 1 !important; /* Forzar una sola columna en móviles */
+  }
+
+  .agregar-terreno input,
+  .agregar-terreno select,
+  .agregar-terreno textarea {
+    font-size: 14px;
+    padding: 14px 18px;
+  }
+
+  .agregar-terreno textarea {
+    min-height: 100px;
+  }
+
+  .agregar-terreno button {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .agregar-terreno input[type="file"]::file-selector-button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}

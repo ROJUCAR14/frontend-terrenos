@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Estilizacion/AdminEditarEliminar.css';
+import Sidebarr from './Sidebar';
 import { FaEdit, FaTrash, FaSave, FaTimes } from 'react-icons/fa';
 
 // 🔗 Backend desplegado en Render
@@ -70,6 +71,7 @@ const AdminEditarEliminar = () => {
   return (
     <div className="tabla-admin">
       <h2>Lista de Propiedades</h2>
+      <Sidebarr /> {/* Sidebar */}
 
       {/* Tabla de propiedades */}
       <table>
